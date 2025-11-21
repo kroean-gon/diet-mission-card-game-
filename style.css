@@ -16,6 +16,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 24px;
+  padding: 32px 16px;
 }
 
 h1 {
@@ -24,13 +25,13 @@ h1 {
 }
 
 #deal-btn {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 12px 28px;
+  font-size: 17px;
   border-radius: 999px;
   border: none;
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  background: #6c5ce7;
+  background: #184a9f;
   color: #fff;
 }
 
@@ -40,8 +41,8 @@ h1 {
 
 .card-container {
   position: relative;
-  width: 360px;
-  height: 220px;
+  width: 380px;
+  height: 260px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,15 +50,15 @@ h1 {
 
 .card {
   position: absolute;
-  width: 120px;
-  height: 180px;
+  width: 130px;
+  height: 200px;
   border-radius: 16px;
   perspective: 1000px;
   cursor: pointer;
   transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
-/* 기본: 겹쳐진 상태 */
+/* 처음엔 겹쳐진 상태 */
 .card:nth-child(1),
 .card:nth-child(2),
 .card:nth-child(3) {
@@ -65,9 +66,9 @@ h1 {
   opacity: 0;
 }
 
-/* 카드 펼쳐졌을 때 */
+/* 카드 펼칠 때 */
 .card.dealt:nth-child(1) {
-  transform: translateX(-120px) rotate(-12deg);
+  transform: translateX(-130px) rotate(-12deg);
   opacity: 1;
 }
 .card.dealt:nth-child(2) {
@@ -75,7 +76,7 @@ h1 {
   opacity: 1;
 }
 .card.dealt:nth-child(3) {
-  transform: translateX(120px) rotate(12deg);
+  transform: translateX(130px) rotate(12deg);
   opacity: 1;
 }
 
@@ -89,6 +90,7 @@ h1 {
   transition: transform 0.6s ease;
 }
 
+/* 앞면/뒷면 공통 (이게 빠져서 이상하게 보였던 거!) */
 .card-front,
 .card-back {
   position: absolute;
@@ -100,30 +102,36 @@ h1 {
   align-items: center;
 }
 
-/* 앞면 */
+/* 카드 앞면: ? 표시 + 파랑 그라데이션 */
 .card-front {
-  background: linear-gradient(135deg, #6c5ce7, #a66cff);
+  background: linear-gradient(
+    135deg,
+    #184a9f 0%,
+    #2b5cc7 40%,
+    #4a7ae6 75%,
+    #6aa2ff 100%
+  );
   color: #fff;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
 }
 
-/* 뒷면 */
+/* 카드 뒷면: 흰 바탕 + 미션 텍스트 */
 .card-back {
   background: #ffffff;
   transform: rotateY(180deg);
-  padding: 16px;
+  padding: 18px;
   text-align: center;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.45;
 }
 
-/* 뒤집혔을 때 */
+/* 뒤집혔을 때 앞/뒷면 전환 */
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-/* 선택 안된 카드 흐리게 */
+/* 선택되지 않은 카드 흐리게 */
 .card.disabled {
   opacity: 0.3;
   cursor: default;
@@ -132,7 +140,52 @@ h1 {
 .hint {
   font-size: 14px;
   color: #555;
-  margin: 0;
+  text-align: center;
+  max-width: 320px;
+  margin-top: 4px;
 }
+
+.brand {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* 📱 모바일 (핸드폰)에서 더 크게 보이도록 */
+@media (max-width: 600px) {
+  .game {
+    justify-content: flex-start;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  #deal-btn {
+    font-size: 16px;
+  }
+
+  .card-container {
+    width: 100%;
+    height: 290px;
+  }
+
+  .card {
+    width: 155px;
+    height: 235px;
+  }
+
+  .card-front {
+    font-size: 42px;
+  }
+
+  .card-back {
+    font-size: 17px;
+    padding: 22px;
+  }
+}
+
 
 
